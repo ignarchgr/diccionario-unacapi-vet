@@ -4,95 +4,124 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>diccionario de unacapi-vet</title>
+  <!-- Tipografías: intento de "Squashy Flow" (usamos Flow Rounded como reemplazo visual) y Century Gothic como cuerpo -->
+  <link href="https://fonts.googleapis.com/css2?family=Flow+Rounded&display=swap" rel="stylesheet">
   <style>
-    /* ====== Reset + base ====== */
     :root{
-      --bg: #0b1020;
-      --card: rgba(255,255,255,0.9);
-      --ink: #111827;
-      --muted: #6b7280;
-      --brand: #7c3aed; /* violeta */
-      --brand-2: #22c55e; /* verde */
+      /* Paleta VERDE CLARO */
+      --bg1: #e9fbe9;     /* base clara */
+      --bg2: #d7f6df;     /* variación */
+      --bg3: #f5fff5;     /* brillo */
+      --card: rgba(255,255,255,0.96);
+      --ink: #0b1b17;
+      --muted: #4e6d63;
+      --accent: #0aa06e;
+      --accent-2: #10b981;
       --radius: 18px;
-      --shadow: 0 10px 35px rgba(0,0,0,.25);
+      --shadow: 0 10px 35px rgba(0,0,0,.12);
+      --display: "Flow Rounded", system-ui, -apple-system, Segoe UI, Roboto, Arial; /* reemplazo de Squashy Flow */
+      --body: "Century Gothic", CenturyGothic, AppleGothic, "URW Gothic", Avenir, Montserrat, system-ui, sans-serif;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html,body{
+      margin:0; 
+      font-family: var(--body);
+      color: var(--ink);
+      /* Fondo verde claro + patrón de capibaras distribuidas en desorden */
+      background-image:
+        radial-gradient(1400px 700px at -10% -10%, var(--bg3), transparent 60%),
+        linear-gradient(0deg, var(--bg2), var(--bg1)),
+        url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?>
+          <svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'>
+            <rect width='100%' height='100%' fill='transparent'/>
+            <g opacity='.22'>
+              <text x='12'  y='42'  font-size='32'>🦫</text>
+              <text x='160' y='28'  font-size='26' opacity='.9'>🦫</text>
+              <text x='90'  y='70'  font-size='22' opacity='.8' transform='rotate(-8 90 70)'>🦫</text>
+              <text x='50'  y='120' font-size='34'>🦫</text>
+              <text x='8'   y='170' font-size='28' opacity='.85'>🦫</text>
+              <text x='130' y='105' font-size='30' opacity='.7' transform='rotate(12 130 105)'>🦫</text>
+              <text x='175' y='160' font-size='24' opacity='.95'>🦫</text>
+            </g>
+          </svg>");
+      background-repeat: no-repeat, no-repeat, repeat;
+      background-size: cover, cover, 260px 260px;
+      background-attachment: fixed, fixed, fixed;
+    }
     body{
       margin:0; 
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial;
       color: var(--ink);
-      /* Cute capybara emoji pattern as background using an inline SVG */
-      background-color: var(--bg);
+      /* Fondo verde con capibaras en SVG repetido */
       background-image:
-        radial-gradient(ellipse at top left, rgba(124,58,237,.35), transparent 60%),
-        radial-gradient(ellipse at bottom right, rgba(34,197,94,.35), transparent 60%),
+        radial-gradient(1200px 600px at -10% -10%, rgba(255,255,255,.25), transparent 60%),
+        linear-gradient(135deg, var(--bg1), var(--bg2)),
         url("data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?>
-          <svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'>
+          <svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'>
             <rect width='100%' height='100%' fill='transparent'/>
-            <text x='20' y='50' font-size='42'>🦫</text>
-            <text x='100' y='40' font-size='28' opacity='.8'>🦫</text>
-            <text x='60' y='120' font-size='36' opacity='.9'>🦫</text>
-            <text x='10' y='150' font-size='24' opacity='.75'>🦫</text>
-            <text x='120' y='110' font-size='30' opacity='.85'>🦫</text>
+            <g opacity='.15'>
+              <text x='18' y='60' font-size='46'>🦫</text>
+              <text x='110' y='50' font-size='30'>🦫</text>
+              <text x='65' y='135' font-size='38'>🦫</text>
+              <text x='12' y='168' font-size='26'>🦫</text>
+              <text x='125' y='120' font-size='34'>🦫</text>
+            </g>
           </svg>");
-      background-repeat: repeat;
-      background-size: auto, auto, 220px 220px;
-      background-attachment: fixed;
+      background-repeat: no-repeat, no-repeat, repeat;
+      background-size: cover, cover, 220px 220px;
+      background-attachment: fixed, fixed, fixed;
     }
 
-    .wrap{max-width:1000px;margin:0 auto;padding:40px 20px}
+    .wrap{max-width:1100px;margin:0 auto;padding:42px 20px}
     header{
-      display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px;
-      color:white
+      display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:22px; color:#0b1b17
     }
-    .title{font-weight:800; letter-spacing:.3px; line-height:1.1}
-    .title span{display:block}
-    .big{font-size:clamp(24px, 5vw, 40px)}
-    .small{font-size:clamp(12px, 2vw, 16px); opacity:.85}
+    .title{font-weight:800; letter-spacing:.3px; line-height:1.1; font-family: var(--display);}
+    .title.big{font-size:clamp(28px, 5vw, 48px); text-shadow: 0 2px 0 rgba(255,255,255,.4);}
+    .title.small{font-size:clamp(12px, 2vw, 16px); opacity:.9; font-weight:600}
 
     .card{background:var(--card); backdrop-filter: blur(8px); border-radius:var(--radius); box-shadow:var(--shadow);}
-    .grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:20px}
-    @media (max-width: 880px){ .grid{grid-template-columns:1fr} }
+    .grid{display:grid; grid-template-columns: 1.15fr .85fr; gap:20px}
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
 
-    /* ====== Form styles ====== */
+    /* Form */
     form{padding:20px}
     label{display:block; font-size:14px; color:var(--muted); margin:8px 0 6px}
     input[type="text"], textarea{
-      width:100%; padding:14px 14px; border-radius:14px; border:1px solid #e5e7eb; outline:none; font-size:15px;
-      background:white; transition:.2s border-color, .2s box-shadow;
+      width:100%; padding:14px 14px; border-radius:14px; border:1px solid #dbe7e2; outline:none; font-size:15px;
+      background:white; transition:.2s border-color, .2s box-shadow; font-family:'Nunito', system-ui;
     }
-    input[type="text"]:focus, textarea:focus{border-color:#c4b5fd; box-shadow:0 0 0 4px rgba(124,58,237,.15)}
+    input[type="text"]:focus, textarea:focus{border-color:#8be1b9; box-shadow:0 0 0 4px rgba(12, 185, 121, .18)}
     textarea{min-height:120px; resize:vertical}
 
-    .row{display:flex; gap:10px}
+    .row{display:flex; gap:10px; flex-wrap:wrap}
     .btn{
-      cursor:pointer; border:0; padding:12px 16px; border-radius:14px; font-weight:700; letter-spacing:.2px; transition:transform .04s ease, box-shadow .2s;
-      background:linear-gradient(135deg, var(--brand), #a78bfa); color:white; box-shadow:0 8px 20px rgba(124,58,237,.4)
+      cursor:pointer; border:0; padding:12px 16px; border-radius:14px; font-weight:800; letter-spacing:.2px; transition:transform .04s ease, box-shadow .2s;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:white; box-shadow:0 8px 20px rgba(11,150,100,.35)
     }
     .btn:active{transform:translateY(1px)}
-    .btn.secondary{background:linear-gradient(135deg, #15803d, var(--brand-2)); box-shadow:0 8px 20px rgba(34,197,94,.35)}
+    .btn.secondary{background:linear-gradient(135deg, #0b7f5a, #0aa06e)}
     .muted{color:var(--muted); font-size:13px}
 
-    /* ====== Toolbar ====== */
-    .toolbar{display:flex; gap:10px; align-items:center; padding:14px 16px; border-bottom:1px solid #e5e7eb}
+    /* Toolbar */
+    .toolbar{display:flex; gap:10px; align-items:center; padding:14px 16px; border-bottom:1px solid #e6f2ed}
     .toolbar input{flex:1}
     .count{font-size:13px; color:var(--muted)}
 
-    /* ====== List ====== */
+    /* List */
     .list{padding:10px 6px 16px}
-    .item{background:#fff; border:1px solid #e5e7eb; border-radius:14px; margin:10px; overflow:hidden}
-    .item header{color:inherit; background:linear-gradient(180deg, rgba(124,58,237,.06), transparent); padding:14px 16px; margin:0; cursor:pointer}
-    .term{font-weight:800; font-size:16px}
-    .term .letter{color:#a78bfa; margin-right:6px}
-    .meaning{padding:0 16px 16px; color:#1f2937; display:none; white-space:pre-wrap}
+    .item{background:#fff; border:1px solid #e9f4ef; border-radius:14px; margin:10px; overflow:hidden}
+    .item header{color:inherit; background:linear-gradient(180deg, rgba(16,180,120,.08), transparent); padding:14px 16px; margin:0; cursor:pointer}
+    .term{font-weight:800; font-size:18px; font-family: var(--display);}
+    .term .letter{color:#10b981; margin-right:8px}
+    .meaning{padding:0 16px 16px; color:#17352c; display:none; white-space:pre-wrap; font-family: var(--body);}
     .item.open .meaning{display:block}
 
-    /* ====== Empty ====== */
     .empty{padding:40px; text-align:center; color:var(--muted)}
 
-    /* badge */
     .badge{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; font-size:12px; border-radius:999px; background:rgba(255,255,255,.35); border:1px solid rgba(255,255,255,.4); color:white}
+
+    mark{background:#c6f6d5; padding:0 .2em; border-radius:4px}
   </style>
 </head>
 <body>
@@ -100,13 +129,13 @@
     <header>
       <div>
         <div class="title big">diccionario de unacapi-vet</div>
-        <div class="title small">Lista de términos con significado desplegable. Fondo con capibaras 🦫.</div>
+        <div class="title small" style="font-family: var(--body); font-weight:600; color:#225b4b">Lista de términos con significado desplegable. Fondo verde con capibaras 🦫.</div>
       </div>
       <div class="badge" title="Guardado localmente en tu navegador">💾 Guardado local</div>
     </header>
 
     <div class="grid">
-      <!-- === Diccionario === -->
+      <!-- Diccionario -->
       <section class="card" aria-label="Diccionario">
         <div class="toolbar">
           <input id="search" type="text" placeholder="Buscar término… (filtra en vivo)" aria-label="Buscar término" />
@@ -115,7 +144,7 @@
         <div id="list" class="list" role="list" aria-live="polite"></div>
       </section>
 
-      <!-- === Agregar === -->
+      <!-- Agregar -->
       <section class="card" aria-label="Agregar término">
         <form id="form">
           <h3 style="margin:0 0 6px">Agregar nuevo término</h3>
@@ -134,16 +163,10 @@
   </div>
 
   <script>
-    // ===== Utilidades =====
     const KEY = 'unacapi_vet_diccionario_v1';
     const $ = sel => document.querySelector(sel);
-    const $$ = sel => Array.from(document.querySelectorAll(sel));
-
     const normalize = s => (s || '').toString().trim();
-
-    function sortByTermES(a, b){
-      return a.term.localeCompare(b.term, 'es', {sensitivity:'base'});
-    }
+    const sortByTermES = (a,b)=> a.term.localeCompare(b.term,'es',{sensitivity:'base'});
 
     function loadStore(){
       try{
@@ -152,21 +175,12 @@
         const data = JSON.parse(raw);
         if(!Array.isArray(data)) return [];
         return data.map(x=>({term: normalize(x.term), meaning: normalize(x.meaning)})).filter(x=>x.term && x.meaning).sort(sortByTermES);
-      }catch(e){
-        console.warn('No se pudo leer el almacenamiento', e);
-        return [];
-      }
+      }catch(e){return []}
     }
+    function saveStore(arr){ localStorage.setItem(KEY, JSON.stringify(arr.sort(sortByTermES))); }
 
-    function saveStore(arr){
-      localStorage.setItem(KEY, JSON.stringify(arr.sort(sortByTermES)));
-    }
-
-    // ===== Estado =====
     let DICT = loadStore();
-
-    // Ejemplos iniciales si está vacío
-    if(DICT.length === 0){
+    if(DICT.length===0){
       DICT = [
         {term:'AINE', meaning:'Antiinflamatorio no esteroidal. Grupo de fármacos usados para tratar dolor e inflamación.'},
         {term:'Brucelosis', meaning:'Zoonosis bacteriana causada por Brucella spp.; importante en medicina veterinaria y salud pública.'},
@@ -175,14 +189,16 @@
       saveStore(DICT);
     }
 
-    // ===== Render =====
     const listEl = $('#list');
     const countEl = $('#count');
     const searchEl = $('#search');
 
+    function escapeHtml(str){
+      return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
+    }
     function highlight(txt, query){
       if(!query) return txt;
-      const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
+      const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\]/g, '\$&') + ')', 'ig');
       return txt.replace(re, '<mark>$1</mark>');
     }
 
@@ -198,14 +214,12 @@
 
       const grouped = items.reduce((acc, it)=>{
         const letter = it.term.charAt(0).toUpperCase();
-        acc[letter] = acc[letter] || [];
-        acc[letter].push(it);
-        return acc;
+        (acc[letter] ||= []).push(it); return acc;
       }, {});
 
       const letters = Object.keys(grouped).sort((a,b)=>a.localeCompare(b,'es',{sensitivity:'base'}));
       listEl.innerHTML = letters.map(letter=>{
-        const rows = grouped[letter].map(it=>{
+        return grouped[letter].map(it=>{
           const safeTerm = highlight(escapeHtml(it.term), q);
           const safeMeaning = escapeHtml(it.meaning);
           return `
@@ -216,44 +230,28 @@
               <div class="meaning">${safeMeaning}</div>
             </div>`;
         }).join('');
-        return rows; // ya vienen con su encabezado de letra en la pill de cada término
       }).join('');
     }
-
-    function escapeHtml(str){
-      return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
-    }
-
     render();
 
-    // ===== Buscar en vivo =====
     searchEl.addEventListener('input', (e)=> render(e.target.value));
 
-    // ===== Agregar / Actualizar =====
-    $('#form').addEventListener('submit', (e)=>{
+    document.querySelector('#form').addEventListener('submit', (e)=>{
       e.preventDefault();
-      const term = normalize($('#term').value);
-      const meaning = normalize($('#meaning').value);
+      const term = normalize(document.querySelector('#term').value);
+      const meaning = normalize(document.querySelector('#meaning').value);
       if(!term || !meaning) return;
-
-      const idx = DICT.findIndex(x => x.term.localeCompare(term,'es',{sensitivity:'base'}) === 0);
-      if(idx >= 0){
-        DICT[idx].meaning = meaning;
-      } else {
-        DICT.push({term, meaning});
-      }
+      const idx = DICT.findIndex(x => x.term.localeCompare(term,'es',{sensitivity:'base'})===0);
+      if(idx>=0){ DICT[idx].meaning = meaning; } else { DICT.push({term, meaning}); }
       saveStore(DICT);
-      render($('#search').value);
+      render(document.querySelector('#search').value);
       e.target.reset();
-      $('#term').focus();
+      document.querySelector('#term').focus();
     });
 
-    // ===== Limpiar todo =====
-    $('#clearAll').addEventListener('click', ()=>{
+    document.querySelector('#clearAll').addEventListener('click', ()=>{
       if(confirm('¿Borrar TODO el diccionario guardado en este navegador?')){
-        DICT = [];
-        saveStore(DICT);
-        render($('#search').value);
+        DICT = []; saveStore(DICT); render(document.querySelector('#search').value);
       }
     });
   </script>
